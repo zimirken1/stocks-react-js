@@ -12,7 +12,6 @@ const fetchStock = async symbol => {
 
 const StockListItem = ({item, deleteSymbolFromFavourites}) => {
     const {data, isLoading} = useQuery(`getStock/${item.symbol}`, () => fetchStock(item.symbol));
-
     if (isLoading) {
         return <Spin/>
     }

@@ -19,7 +19,7 @@ const Stocks = () => {
   };
 
   return (
-    <div className={styles.tablePage}>
+    <div className={styles.stocks}>
       <SearchStocks addSymbolToFavourites={addSymbolToFavourites} />
       <StocksList stocks={favourites} deleteSymbolFromFavourites={deleteSymbolFromFavourites} />
     </div>

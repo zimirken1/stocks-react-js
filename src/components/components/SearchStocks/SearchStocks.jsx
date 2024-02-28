@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './SearchStocks.module.css';
 import { useQuery } from 'react-query';
 import { stocksApi } from '../../../API/stocksAPI.js';
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const SearchStocks = ({ addSymbolToFavourites }) => {
   const { data } = useQuery('getStocks', () => stocksApi['getStocks']());
@@ -27,6 +27,7 @@ const SearchStocks = ({ addSymbolToFavourites }) => {
       if (autocompleteRef.current && autocompleteRef.current.contains(e.target)) {
         setFocus(false);
       }
+      setFocus(false);
     }, 100);
   };
 
@@ -45,12 +46,11 @@ const SearchStocks = ({ addSymbolToFavourites }) => {
         onChange={e => setValue(e.target.value)}
       />
       {value && focus && stocks.length && (
-        <List ref={autocompleteRef}>
+        <List className={styles.autocomplete_container} ref={autocompleteRef}>
           {stocks.map(stock => {
             return (
-              <List.Item key={stock.figi}>
+              <List.Item key={stock.figi} onClick={() => selectStock(stock)}>
                 {stock.description}
-                <AiOutlinePlus onClick={() => selectStock(stock)} />
               </List.Item>
             );
           })}

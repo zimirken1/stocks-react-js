@@ -5,4 +5,5 @@
     justify-content: center;
     flex-direction: column;
     margin: 30px auto;
+    gap: 40px;
 }

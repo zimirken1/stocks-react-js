@@ -1,7 +1,7 @@
 import SearchStocks from '../../components/components/SearchStocks/SearchStocks.jsx';
 import styles from './Stocks.module.css';
-import StocksList from '../../components/components/StocksList/StocksList.jsx';
 import useLocalStorage from '../../hooks/useLocalStorage.js';
+import StocksTable from '../../components/components/StocksList/StocksTable.jsx';
 
 const Stocks = () => {
   const { value: favourites, updateValue: setFavourites } = useLocalStorage('favouriteStocks', []);
@@ -21,7 +21,7 @@ const Stocks = () => {
   return (
     <div className={styles.stocks}>
       <SearchStocks addSymbolToFavourites={addSymbolToFavourites} />
-      <StocksList stocks={favourites} deleteSymbolFromFavourites={deleteSymbolFromFavourites} />
+      <StocksTable stocks={favourites} deleteSymbolFromFavourites={deleteSymbolFromFavourites} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import styles from './SearchStocks.module.css';
 import { useQuery } from 'react-query';
 import { stocksApi } from '../../../API/stocksAPI.js';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FiSearch } from 'react-icons/fi';
 
 const SearchStocks = ({ addSymbolToFavourites }) => {
   const { data } = useQuery('getStocks', () => stocksApi['getStocks']());
@@ -39,6 +40,7 @@ const SearchStocks = ({ addSymbolToFavourites }) => {
   return (
     <div className={styles.container}>
       <Input
+        addonBefore={<FiSearch size={16} />}
         allowClear={<AiOutlineClose />}
         value={value}
         onFocus={() => setFocus(true)}

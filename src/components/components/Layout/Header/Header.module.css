@@ -1,0 +1,11 @@
+.header {
+  margin: 0 -10px 0 0;
+  height: 40px;
+  border-bottom: 1px solid gainsboro;
+}
+.header_inner {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin-right: 30px;
+}

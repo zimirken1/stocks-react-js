@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import { stocksApi } from '../../../API/stocksAPI.js';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiSearch } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 const SearchStocks = ({ addSymbolToFavourites }) => {
   const { data } = useQuery('getStocks', () => stocksApi['getStocks']());
@@ -35,6 +36,10 @@ const SearchStocks = ({ addSymbolToFavourites }) => {
   const selectStock = stock => {
     setValue('');
     addSymbolToFavourites(stock);
+    toast.success('Успешно!', {
+      position: 'bottom-right',
+      autoClose: 4000,
+    });
   };
 
   return (

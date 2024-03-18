@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './Header.module.css';
-import { HiMiniIdentification } from 'react-icons/hi2';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header_inner}>
-        <HiMiniIdentification size={36} color={'#2c2c2c'} />
+        <AiOutlineUser size={24} color={'#2c2c2c'} />
       </div>
     </header>
   );

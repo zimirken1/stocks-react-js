@@ -26,14 +26,15 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      gap: 8px;
 
       .menu_item {
         width: 300px;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
+        align-self: self-start;
         color: grey;
         background-color: transparent;
         border: none;

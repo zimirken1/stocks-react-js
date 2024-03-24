@@ -32,13 +32,15 @@ const Section = () => {
             enterDone: styles.fadeEnterDone,
             exit: styles.fadeExit,
           }}
-          timeout={0}
+          timeout={100}
           unmountOnExit
         >
           <Routes location={location}>
             <Route path={'/'} element={<About />} />
             <Route path={'/favourite'} element={<Stocks />} />
-            <Route path={'/portfolio'} element={<Portfolio />} />
+            <Route path={'/portfolio'} element={<Portfolio />} >
+              <Route path=':symbol' />
+            </Route>
           </Routes>
         </CSSTransition>
       </TransitionGroup>

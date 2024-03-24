@@ -12,7 +12,7 @@ const fetchStock = async symbol => {
 };
 
 const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
-  const { data, isLoading, refetch } = useQuery(['getStocks', stocks.map(stock => stock.symbol)], () =>
+  const { data, isLoading } = useQuery(['getStocks', stocks.map(stock => stock.symbol)], () =>
     Promise.all(stocks.map(stock => fetchStock(stock.symbol)))
   );
 

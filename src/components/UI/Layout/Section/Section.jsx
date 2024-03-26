@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styles from './Section.module.css';
+import { Spin } from 'antd';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import About from '../../../../pages/About/About.jsx';
@@ -37,10 +38,22 @@ const Section = () => {
         >
           <Routes location={location}>
             <Route path={'/'} element={<About />} />
-            <Route path={'/favourite'} element={<Stocks />} />
-            <Route path={'/portfolio'} element={<Portfolio />} >
-              <Route path=':symbol' />
-            </Route>
+            <Route
+              path={'/favourite'}
+              element={
+                <Suspense fallback={<Spin />}>
+                  <Stocks />
+                </Suspense>
+              }
+            />
+            <Route
+              path={'/portfolio'}
+              element={
+                <Suspense fallback={<Spin />}>
+                  <Portfolio />
+                </Suspense>
+              }
+            />
           </Routes>
         </CSSTransition>
       </TransitionGroup>

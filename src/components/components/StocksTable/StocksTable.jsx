@@ -24,34 +24,34 @@ const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
 
   const columns = [
     {
-      title: 'Логотип',
+      title: <strong>Логотип</strong>,
       dataIndex: 'logo',
       key: 'logo',
       render: text => (text ? <Image width={50} height={50} src={text} alt='logo' /> : null),
     },
     {
-      title: 'Название',
+      title: <strong>Название</strong>,
       dataIndex: 'name',
       key: 'name',
       sorter: (a, b) => a.name.localeCompare(b.name),
       sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
     },
     {
-      title: 'Тикер',
+      title: <strong>Тикер</strong>,
       dataIndex: 'ticker',
       key: 'ticker',
       sorter: (a, b) => a.ticker.localeCompare(b.ticker),
       sortOrder: sortedInfo.columnKey === 'ticker' && sortedInfo.order,
     },
     {
-      title: 'Символ',
+      title: <strong>Символ</strong>,
       dataIndex: 'symbol',
       key: 'symbol',
       sorter: (a, b) => a.symbol.localeCompare(b.symbol),
       sortOrder: sortedInfo.columnKey === 'symbol' && sortedInfo.order,
     },
     {
-      title: 'Цена',
+      title: <strong>Цена</strong>,
       dataIndex: 'price',
       key: 'price',
       sorter: (a, b) => a.price - b.price,
@@ -66,7 +66,7 @@ const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
       ),
     },
     {
-      title: 'Действие',
+      title: <strong>Действие</strong>,
       key: 'action',
       render: (_, record) => {
         return (

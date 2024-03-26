@@ -10,3 +10,16 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.form {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.button_text {
+  color: white;
+}

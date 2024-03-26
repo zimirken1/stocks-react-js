@@ -1,7 +1,7 @@
 import SearchStocks from '../../components/components/SearchStocks/SearchStocks.jsx';
 import styles from './Stocks.module.css';
 import useLocalStorage from '../../hooks/useLocalStorage.js';
-import StocksTable from '../../components/components/StocksList/StocksTable.jsx';
+import StocksTable from '../../components/components/StocksTable/StocksTable.jsx';
 
 const Stocks = () => {
   const { value: favourites, updateValue: setFavourites } = useLocalStorage('favouriteStocks', []);

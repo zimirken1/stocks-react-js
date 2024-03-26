@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FiSearch } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 
-export const SearchStocks = ({ addSymbolToFavourites, addSymbolToPortfolio, openSidebar }) => {
+export const SearchStocks = ({ addSymbolToFavourites, openSidebar }) => {
   const { data } = useQuery('getStocks', () => stocksApi['getStocks']());
   const [value, setValue] = useState('');
   const [stocks, setStocks] = useState([]);
@@ -36,15 +36,14 @@ export const SearchStocks = ({ addSymbolToFavourites, addSymbolToPortfolio, open
   const selectStock = stock => {
     setValue('');
     if (addSymbolToFavourites) {
-     addSymbolToFavourites(stock);
+      addSymbolToFavourites(stock);
+      toast.success('Успешно!', {
+        position: 'bottom-right',
+        autoClose: 4000,
+      });
     } else {
       openSidebar(stock.symbol);
-      addSymbolToPortfolio(stock);
     }
-     toast.success('Успешно!', {
-       position: 'bottom-right',
-      autoClose: 4000,
-     });
   };
 
   return (

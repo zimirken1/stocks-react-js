@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Card, Spin, Typography, Image, InputNumber, Button } from 'antd';
 import { useQuery } from 'react-query';
+
 import { stocksApi } from '../../../API/stocksAPI.js';
 import styles from './StockDetails.module.css';
 

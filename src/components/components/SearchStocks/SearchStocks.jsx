@@ -1,11 +1,12 @@
-import { Input, List } from 'antd';
 import { useEffect, useRef, useState } from 'react';
-import styles from './SearchStocks.module.css';
+import { Input, List } from 'antd';
 import { useQuery } from 'react-query';
-import { stocksApi } from '../../../API/stocksAPI.js';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FiSearch } from 'react-icons/fi';
 import { toast } from 'react-toastify';
+
+import { stocksApi } from 'src/API/stocksAPI';
+import styles from './SearchStocks.module.css';
 
 export const SearchStocks = ({ addSymbolToFavourites, openSidebar }) => {
   const { data } = useQuery('getStocks', () => stocksApi['getStocks']());
@@ -70,5 +71,3 @@ export const SearchStocks = ({ addSymbolToFavourites, openSidebar }) => {
     </div>
   );
 };
-
-export default SearchStocks;

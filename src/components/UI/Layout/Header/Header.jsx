@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './Header.module.css';
 import { AiOutlineUser } from 'react-icons/ai';
 
-const Header = () => {
+import styles from './Header.module.css';
+
+export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header_inner}>
@@ -11,5 +12,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

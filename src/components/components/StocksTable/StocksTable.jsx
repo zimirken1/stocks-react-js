@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Table, Button, Spin, Image } from 'antd';
 import { useQuery } from 'react-query';
-import { stocksApi } from '../../../API/stocksAPI.js';
+
+import { stocksApi } from 'src/API/stocksAPI';
 import styles from './StocksTable.module.css';
 
 const fetchStock = async symbol => {
@@ -11,14 +12,14 @@ const fetchStock = async symbol => {
   return { ...profile.data, symbol: symbol, price: price.data.c, priceChange: price.data.dp };
 };
 
-const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
+export const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
   const { data, isLoading } = useQuery(['getStocks', stocks.map(stock => stock.symbol)], () =>
     Promise.all(stocks.map(stock => fetchStock(stock.symbol)))
   );
 
   const [sortedInfo, setSortedInfo] = useState({});
 
-  const handleChange = (pagination, filters, sorter) => {
+  const handleChange = sorter => {
     setSortedInfo(sorter);
   };
 
@@ -76,7 +77,7 @@ const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
               deleteSymbolFromFavourites(record.symbol);
             }}
           >
-            Remove
+            Удалить
           </Button>
         );
       },
@@ -105,5 +106,3 @@ const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
     </div>
   );
 };
-
-export default StocksTable;

@@ -1,14 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import { Drawer } from 'antd';
 
-import SearchStocks from '../../components/components/SearchStocks/SearchStocks.jsx';
+import { SearchStocks } from 'src/components/components/SearchStocks/SearchStocks.jsx';
 import { PortfolioStocksTable } from './PortfolioStocksTable/PortfolioStocksTable.jsx';
-import { useSidebar } from '../../hooks/useSidebar.jsx';
+import { useSidebar } from 'src/hooks/useSidebar.jsx';
 import { StockDetails } from './StockDetails/StockDetails.jsx';
-import useLocalStorage from '../../hooks/useLocalStorage.js';
+import { useLocalStorage } from 'src/hooks/useLocalStorage.js';
 import styles from './Portfolio.module.css';
 
-const Portfolio = () => {
+export const Portfolio = () => {
   const { symbol, isOpen, openSidebar, closeSidebar } = useSidebar();
   const [totalCurrentPrice, setTotalCurrentPrice] = useState();
   const { value: portfolioStocks, updateValue: setPortfolioStocks } = useLocalStorage('portfolio', []);
@@ -20,6 +20,11 @@ const Portfolio = () => {
     }
   };
 
+  const deleteSymbolFromPortfolio = symbol => {
+    const filteredStocks = portfolioStocks.filter(stock => stock.symbol !== symbol);
+    setPortfolioStocks(filteredStocks);
+  };
+
   const totalSpend = useMemo(() => {
     return Number(portfolioStocks.reduce((total, stock) => total + stock.totalPrice, 0)).toFixed(2);
   }, [portfolioStocks]);
@@ -28,14 +33,18 @@ const Portfolio = () => {
     <div className={styles.container}>
       <div className={styles.details}>
         <SearchStocks openSidebar={openSidebar} />
-        <PortfolioStocksTable stocks={portfolioStocks} setTotalCurrentPrice={setTotalCurrentPrice} />
+        <PortfolioStocksTable
+          stocks={portfolioStocks}
+          setTotalCurrentPrice={setTotalCurrentPrice}
+          deleteSymbolFromPortfolio={deleteSymbolFromPortfolio}
+        />
       </div>
       <div className={styles.stats}>
         <div className={styles.statsInner}>
           <h1>Статистика</h1>
           <div>Потрачено: {totalSpend} USD</div>
           <div>Текущая стоимость портфеля: {totalCurrentPrice} USD</div>
-          <div>Прибыль: {totalCurrentPrice - totalSpend} USD</div>
+          <div>Прибыль: {(totalCurrentPrice - totalSpend).toFixed(2)} USD</div>
         </div>
       </div>
       <Drawer open={isOpen} width={600} onClose={() => closeSidebar()} title={symbol}>
@@ -44,5 +53,3 @@ const Portfolio = () => {
     </div>
   );
 };
-
-export default Portfolio;

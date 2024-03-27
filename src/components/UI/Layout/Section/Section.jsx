@@ -1,16 +1,18 @@
 import React, { Suspense } from 'react';
-import styles from './Section.module.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Spin } from 'antd';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import About from '../../../../pages/About/About.jsx';
-import Stocks from '../../../../pages/Stocks/Stocks.jsx';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Portfolio from '../../../../pages/Portfolio/Portfolio.jsx';
 
-const Section = () => {
+import { About } from 'src/pages/About/About.jsx';
+import { Favourites } from 'src/pages/Favourites/Favourites.jsx';
+import { Portfolio } from '../../../../pages/Portfolio/Portfolio.jsx';
+import styles from './Section.module.css';
+
+export const Section = () => {
   const location = useLocation();
+
   return (
     <section className={styles.section}>
       <ToastContainer
@@ -42,7 +44,7 @@ const Section = () => {
               path={'/favourite'}
               element={
                 <Suspense fallback={<Spin />}>
-                  <Stocks />
+                  <Favourites />
                 </Suspense>
               }
             />
@@ -60,5 +62,3 @@ const Section = () => {
     </section>
   );
 };
-
-export default Section;

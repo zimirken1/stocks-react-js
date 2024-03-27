@@ -1,9 +1,11 @@
-import SearchStocks from '../../components/components/SearchStocks/SearchStocks.jsx';
-import styles from './Stocks.module.css';
-import useLocalStorage from '../../hooks/useLocalStorage.js';
-import StocksTable from '../../components/components/StocksTable/StocksTable.jsx';
+import React from 'react';
 
-const Stocks = () => {
+import { SearchStocks } from 'src/components/components/SearchStocks/SearchStocks.jsx';
+import { useLocalStorage } from 'src/hooks/useLocalStorage.js';
+import { StocksTable } from 'src/components/components/StocksTable/StocksTable';
+import styles from './Favourites.module.css';
+
+export const Favourites = () => {
   const { value: favourites, updateValue: setFavourites } = useLocalStorage('favouriteStocks', []);
 
   const addSymbolToFavourites = stock => {
@@ -25,5 +27,3 @@ const Stocks = () => {
     </div>
   );
 };
-
-export default Stocks;

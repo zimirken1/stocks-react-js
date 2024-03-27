@@ -1,11 +1,12 @@
 import React from 'react';
-import styles from './Sider.module.css';
 import { Button } from 'antd';
 import { PiSuitcaseSimpleLight } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineHeart, AiOutlineHome } from 'react-icons/ai';
 
-const Sider = () => {
+import styles from './Sider.module.css';
+
+export const Sider = () => {
   const navigate = useNavigate();
   return (
     <aside className={styles.sider}>
@@ -33,5 +34,3 @@ const Sider = () => {
     </aside>
   );
 };
-
-export default Sider;

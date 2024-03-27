@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Table, Button, Spin, Image } from 'antd';
 import { useQuery } from 'react-query';
-import { stocksApi } from '../../../API/stocksAPI.js';
+
+import { stocksApi } from 'src/API/stocksAPI';
 import styles from './PortfolioStocksTable.module.css';
 
 const fetchStock = async stock => {
@@ -19,7 +20,7 @@ const fetchStock = async stock => {
   };
 };
 
-export const PortfolioStocksTable = ({ stocks, deleteSymbolFromFavourites, setTotalCurrentPrice }) => {
+export const PortfolioStocksTable = ({ stocks, deleteSymbolFromPortfolio, setTotalCurrentPrice }) => {
   const { data, isLoading } = useQuery(['getStocks', stocks.map(stock => stock.symbol)], () =>
     Promise.all(stocks.map(stock => fetchStock(stock)))
   );
@@ -104,7 +105,7 @@ export const PortfolioStocksTable = ({ stocks, deleteSymbolFromFavourites, setTo
       key: 'totalPrice',
       sorter: (a, b) => a.totalPrice - b.totalPrice,
       sortOrder: sortedInfo.columnKey === 'totalPrice' && sortedInfo.order,
-      render: text => <span>{`${text} USD`}</span>,
+      render: text => <span>{`${text.toFixed(2)} USD`}</span>,
     },
     {
       title: <strong>Действие</strong>,
@@ -114,10 +115,10 @@ export const PortfolioStocksTable = ({ stocks, deleteSymbolFromFavourites, setTo
           <Button
             danger
             onClick={() => {
-              deleteSymbolFromFavourites(record.symbol);
+              deleteSymbolFromPortfolio(record.symbol);
             }}
           >
-            -
+            Удалить
           </Button>
         );
       },

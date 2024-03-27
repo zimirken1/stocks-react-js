@@ -6,7 +6,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { About } from 'src/pages/About/About.jsx';
-import { Favourites } from 'src/pages/Favourites/Favourites.jsx';
+import { Favourites } from 'src/pages/Stocks/Favourites.jsx';
 import { Portfolio } from '../../../../pages/Portfolio/Portfolio.jsx';
 import styles from './Section.module.css';
 

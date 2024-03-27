@@ -2,24 +2,18 @@ import React, { useState } from 'react';
 import { Table, Button, Spin, Image } from 'antd';
 import { useQuery } from 'react-query';
 
-import { stocksApi } from 'src/API/stocksAPI';
+import { useFetchStock } from 'src/hooks/useFetchStock';
 import styles from './StocksTable.module.css';
 
-const fetchStock = async symbol => {
-  const price = await stocksApi.getPrice(symbol);
-  const profile = await stocksApi.getProfile(symbol);
-
-  return { ...profile.data, symbol: symbol, price: price.data.c, priceChange: price.data.dp };
-};
-
 export const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
+  const { fetchStock } = useFetchStock();
   const { data, isLoading } = useQuery(['getStocks', stocks.map(stock => stock.symbol)], () =>
     Promise.all(stocks.map(stock => fetchStock(stock.symbol)))
   );
 
-  const [sortedInfo, setSortedInfo] = useState({});
+  const [sortedInfo, setSortedInfo] = useState({ columnKey: null, order: null });
 
-  const handleChange = sorter => {
+  const handleChange = (pagination, filters, sorter) => {
     setSortedInfo(sorter);
   };
 
@@ -88,7 +82,20 @@ export const StocksTable = ({ stocks, deleteSymbolFromFavourites }) => {
     return <Spin />;
   }
 
-  const dataSource = data.map(item => ({
+  const sortedData = data.slice().sort((a, b) => {
+    const columnValueA = a[sortedInfo.columnKey];
+    const columnValueB = b[sortedInfo.columnKey];
+
+    if (typeof columnValueA === 'string' && typeof columnValueB === 'string') {
+      return columnValueA.localeCompare(columnValueB);
+    } else if (typeof columnValueA === 'number' && typeof columnValueB === 'number') {
+      return columnValueA - columnValueB;
+    } else {
+      return 0;
+    }
+  });
+
+  const dataSource = sortedData.map(item => ({
     key: item.symbol,
     ...item,
   }));

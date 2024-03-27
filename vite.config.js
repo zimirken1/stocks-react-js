@@ -11,6 +11,7 @@ export default defineConfig({
       assets: '/src/assets',
       pages: '/src/pages',
       hooks: '/src/hooks',
+      utils: '/src/utils',
     },
   },
 });

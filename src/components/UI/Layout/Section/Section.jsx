@@ -8,6 +8,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { About } from 'src/pages/About/About.jsx';
 import { Favourites } from 'src/pages/Stocks/Favourites.jsx';
 import { Portfolio } from '../../../../pages/Portfolio/Portfolio.jsx';
+import { Auth } from 'src/pages/Auth/Auth.jsx';
 import styles from './Section.module.css';
 
 export const Section = () => {
@@ -53,6 +54,14 @@ export const Section = () => {
               element={
                 <Suspense fallback={<Spin />}>
                   <Portfolio />
+                </Suspense>
+              }
+            />
+            <Route
+              path={'/auth'}
+              element={
+                <Suspense fallback={<Spin />}>
+                  <Auth />
                 </Suspense>
               }
             />

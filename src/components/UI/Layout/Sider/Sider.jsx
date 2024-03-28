@@ -8,6 +8,7 @@ import styles from './Sider.module.css';
 
 export const Sider = () => {
   const navigate = useNavigate();
+
   return (
     <aside className={styles.sider}>
       <div className={styles.sider_buttons}>

@@ -1,0 +1,10 @@
+.form_outer {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input_field {
+  margin-bottom: 10px;
+}

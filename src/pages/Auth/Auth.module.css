@@ -1,6 +1,17 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
+  height: 100vh;
+  width: 100vw;
+  background: rgb(185, 251, 238);
+  background: linear-gradient(
+    90deg,
+    rgba(185, 251, 238, 0.17) 0%,
+    rgba(165, 193, 246, 0.16712622549019607) 17%,
+    rgba(251, 154, 240, 0.17) 29%,
+    rgba(223, 210, 245, 0.17) 47%,
+    rgba(204, 250, 248, 0.17) 60%,
+    rgba(247, 209, 250, 0.17) 70%,
+    rgba(229, 242, 226, 0.17) 83%,
+    rgba(238, 237, 237, 0.17) 92%
+  );
 }

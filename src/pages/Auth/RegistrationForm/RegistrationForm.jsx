@@ -7,9 +7,9 @@ export const RegistrationForm = ({ formik, toggleForm }) => {
   return (
     <>
       <form className={styles.form_outer} onSubmit={formik.handleSubmit}>
-        <Typography.Text>
+        <Typography.Title level={2} className={styles.form_title}>
           <strong>Регистрация</strong>
-        </Typography.Text>
+        </Typography.Title>
         <Input
           className={styles.input_field}
           id='email'
@@ -28,12 +28,14 @@ export const RegistrationForm = ({ formik, toggleForm }) => {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
-        <Typography.Text>
-          Уже есть аккаунт? <span onClick={() => toggleForm()}>Войти</span>
-        </Typography.Text>
-        <Button type='primary' htmlType='submit'>
-          Зарегистрироваться
-        </Button>
+        <div className={styles.form_buttons}>
+          <Typography.Text>
+            Уже есть аккаунт? <a onClick={() => toggleForm()}>Войти</a>
+          </Typography.Text>
+          <Button type='primary' htmlType='submit'>
+            Зарегистрироваться
+          </Button>
+        </div>
       </form>
     </>
   );

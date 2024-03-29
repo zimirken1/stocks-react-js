@@ -51,7 +51,7 @@ export const SearchStocks = ({ addSymbolToFavourites, openSidebar }) => {
         allowClear
         size='large'
       >
-        <Input size={'large'} prefix={<FiSearch size={16} />} />
+        <Input size={'large'} placeholder={'Название котировки'} prefix={<FiSearch size={16} />} />
       </AutoComplete>
     </div>
   );

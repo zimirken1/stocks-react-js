@@ -1,8 +1,6 @@
 .container {
-  border: 1px solid #e3e3e3;
   border-radius: 8px;
   padding: 25px;
-  margin: 25px;
   display: grid;
   grid-template-columns: 1000px 300px;
   grid-column-gap: 25px;
@@ -18,7 +16,6 @@
 }
 
 .stats {
-  width: 340px;
   display: flex;
   flex-direction: column;
   border-radius: 8px;

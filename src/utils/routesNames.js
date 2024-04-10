@@ -15,4 +15,8 @@ export const routesNames = [
     name: 'Авторизация',
     route: '/auth',
   },
+  {
+    name: 'Профиль',
+    route: '/profile',
+  },
 ];

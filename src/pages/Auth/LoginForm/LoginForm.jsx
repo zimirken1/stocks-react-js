@@ -1,9 +1,32 @@
 import React from 'react';
 import { Typography, Input, Button } from 'antd';
+import { toast } from 'react-toastify';
+import { useLocalStorage } from 'src/hooks/useLocalStorage';
 
+import { useMeContext } from 'src/context/meContext';
+import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 
 export const LoginForm = ({ formik, toggleForm }) => {
+  const navigate = useNavigate();
+  const { login } = useMeContext();
+  const { value: usersData } = useLocalStorage('users', []);
+
+  const handleLogin = async () => {
+    try {
+      const user = usersData.find(u => u.email === formik.values.email && u.password === formik.values.password);
+      if (user) {
+        login(usersData);
+        toast.success('Вход выполнен успешно!');
+        navigate('/');
+      } else {
+        toast.error('Неверный email или пароль.');
+      }
+    } catch (error) {
+      toast.error('Ошибка при попытке входа:', error);
+    }
+  };
+
   return (
     <>
       <form className={styles.form_outer} onSubmit={formik.handleSubmit}>
@@ -32,7 +55,7 @@ export const LoginForm = ({ formik, toggleForm }) => {
           <Typography.Text>
             Нет аккаунта? <a onClick={() => toggleForm()}>Зарегистрироваться</a>
           </Typography.Text>
-          <Button type='primary' htmlType='submit'>
+          <Button type='primary' htmlType='submit' onClick={() => handleLogin()}>
             Войти
           </Button>
         </div>

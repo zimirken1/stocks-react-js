@@ -1,18 +1,17 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Spin } from 'antd';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import { About } from 'src/pages/About/About.jsx';
-import { Favourites } from 'src/pages/Stocks/Favourites.jsx';
-import { Portfolio } from '../../../../pages/Portfolio/Portfolio.jsx';
-import { Auth } from 'src/pages/Auth/Auth.jsx';
 import styles from './Section.module.css';
+import { PrivateRoutes } from './Routes/PrivateRoutes';
+import { PublicRoutes } from './Routes/PublicRoutes';
+import { useMeContext } from 'src/context/meContext';
 
 export const Section = () => {
   const location = useLocation();
+  const { me } = useMeContext();
 
   return (
     <section className={styles.section}>
@@ -39,33 +38,7 @@ export const Section = () => {
           timeout={100}
           unmountOnExit
         >
-          <Routes location={location}>
-            <Route path={'/'} element={<About />} />
-            <Route
-              path={'/favourite'}
-              element={
-                <Suspense fallback={<Spin />}>
-                  <Favourites />
-                </Suspense>
-              }
-            />
-            <Route
-              path={'/portfolio'}
-              element={
-                <Suspense fallback={<Spin />}>
-                  <Portfolio />
-                </Suspense>
-              }
-            />
-            <Route
-              path={'/auth'}
-              element={
-                <Suspense fallback={<Spin />}>
-                  <Auth />
-                </Suspense>
-              }
-            />
-          </Routes>
+          <>{me ? <PrivateRoutes /> : <PublicRoutes />}</>
         </CSSTransition>
       </TransitionGroup>
     </section>

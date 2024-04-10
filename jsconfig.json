@@ -7,7 +7,8 @@
       "assets": ["./src/assets/*"],
       "pages": ["./src/pages/*"],
       "hooks": ["./src/hooks/*"],
-      "utils": ["./src/utils/*"]
+      "utils": ["./src/utils/*"],
+      "context": ["./src/context/*"]
     }
   }
 }

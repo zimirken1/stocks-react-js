@@ -9,7 +9,7 @@ import { useMeContext } from 'src/context/meContext';
 import styles from './Header.module.css';
 
 export const Header = () => {
-  const { me, isAdmin, logout } = useMeContext();
+  const { me, logout } = useMeContext();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,8 +27,6 @@ export const Header = () => {
     return result;
   }, [getBreadcrumbItem]);
 
-  console.log(breadcrumbItems);
-
   const handleProfileClick = () => {
     return me ? navigate('/profile') : navigate('/auth');
   };
@@ -38,6 +36,10 @@ export const Header = () => {
     navigate('/auth');
   };
 
+  const isAdmin = useMemo(() => {
+    return me?.at(-1).roles?.includes('admin');
+  }, [me]);
+
   return (
     <header className={styles.header}>
       <div className={styles.header_inner}>
@@ -45,7 +47,7 @@ export const Header = () => {
           <Breadcrumb items={breadcrumbItems} className={styles.breadcrumb} />
         </div>
         <div className={styles.header_items}>
-          {isAdmin && <MdOutlineAdminPanelSettings size={32} color={'#2c2c2c'} />}
+          {isAdmin && <MdOutlineAdminPanelSettings size={32} color={'#2c2c2c'} onClick={() => navigate('/admin')} />}
           <AiOutlineUser size={32} color={'#2c2c2c'} onClick={handleProfileClick} />
           {me && <MdOutlineExitToApp size={32} color={'#2c2c2c'} onClick={handleLogoutClick} />}
         </div>

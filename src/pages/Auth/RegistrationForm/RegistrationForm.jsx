@@ -23,6 +23,7 @@ export const RegistrationForm = ({ formik, toggleForm }) => {
           email: formik.values.email,
           password: formik.values.password,
           roles: ['user', 'admin'],
+          status: 'active',
         };
         updateUsersData([...usersData, newUser]);
         login(newUser);

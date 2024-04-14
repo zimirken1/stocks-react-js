@@ -19,4 +19,8 @@ export const routesNames = [
     name: 'Профиль',
     route: '/profile',
   },
+  {
+    name: 'Админ-панель',
+    route: '/admin',
+  },
 ];

@@ -7,6 +7,7 @@ import { Portfolio } from 'src/pages/Portfolio/Portfolio';
 import { Auth } from 'src/pages/Auth/Auth';
 import { Profile } from 'src/pages/Profile/Profile';
 import { About } from 'src/pages/About/About';
+import { AdminPanel } from 'src/pages/AdminPanel/AdminPanel';
 
 export const PrivateRoutes = ({ location }) => {
   return (
@@ -48,6 +49,14 @@ export const PrivateRoutes = ({ location }) => {
         element={
           <Suspense fallback={<Spin />}>
             <About />
+          </Suspense>
+        }
+      />
+      <Route
+        path={'/admin'}
+        element={
+          <Suspense fallback={<Spin />}>
+            <AdminPanel />
           </Suspense>
         }
       />

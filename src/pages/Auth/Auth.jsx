@@ -16,7 +16,7 @@ export const Auth = () => {
       password: '',
     },
     onSubmit: values => {
-      alert(values);
+      // alert(values);
     },
   });
 

@@ -1,0 +1,37 @@
+.adminPanel {
+  padding: 16px;
+}
+
+.adminTable {
+  .ant-table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .ant-table-thead > tr > th {
+    background-color: #fafafa;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .ant-table-tbody > tr > td {
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .ant-table-row:hover > td {
+    background-color: #f5f5f5;
+  }
+
+  .ant-table-tbody > tr:nth-child(odd) > td {
+    background-color: #fcfcfc;
+  }
+
+  .ant-table-pagination {
+    margin-top: 16px;
+  }
+}
+
+.adminSearch {
+  padding-bottom: 16px;
+}

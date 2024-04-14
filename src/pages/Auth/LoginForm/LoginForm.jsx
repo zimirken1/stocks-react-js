@@ -14,6 +14,7 @@ export const LoginForm = ({ formik, toggleForm }) => {
 
   const handleLogin = async () => {
     const user = usersData.find(u => u.email === formik.values.email && u.password === formik.values.password);
+    console.log(user);
     if (user) {
       toast.success('Вход выполнен успешно!');
       navigate('/');

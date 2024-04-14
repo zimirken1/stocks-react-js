@@ -1,9 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { Card, Spin, Typography, Image, InputNumber, Button } from 'antd';
+import { DollarOutlined, GlobalOutlined, TagOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { useQuery } from 'react-query';
 
 import { stocksApi } from '../../../API/stocksAPI.js';
 import styles from './StockDetails.module.css';
+import './Drawer.override.css';
 
 const { Text } = Typography;
 
@@ -42,54 +44,60 @@ export const StockDetails = ({ symbol, addSymbolToPortfolio, closeSidebar }) => 
   }
 
   return (
-    <Card title='Stock Details'>
-      <div className={styles.logo}>
-        <Text>{data.name && <strong>{data.name}</strong>}</Text>
-        <Image src={data.logo && data.logo} width={64} height={64} alt='logo' />
+    <Card title='Stock Details' className={styles.stockDetailsCard}>
+      <div className={styles.header}>
+        <Image src={data.logo} width={64} height={64} alt={`${data.name} logo`} />
+        <div>
+          <h2>{data.name}</h2>
+          <Text type='secondary'>{data.ticker}</Text>
+        </div>
       </div>
-      <div className={styles.inner}>
-        {data.country && <Text>Country: {data.country}</Text>}
-        {data.currency && <Text>Currency: {data.currency}</Text>}
-        {data.exchange && (
+      <div className={styles.content}>
+        <div className={styles.section}>
           <Text>
-            Exchange: <>{data.exchange}</>
+            <GlobalOutlined /> {data.country}
           </Text>
-        )}
-        {data.finnhubIndustry && <Text>Finnhub industry: {data.finnhubIndustry}</Text>}
-        {data.ipo && <Text>Ipo: {data.ipo}</Text>}
-        {data.ticker && <Text>Ticker: {data.ticker}</Text>}
-        {data.weburl && (
           <Text>
-            Website: <a href={data.weburl}>{data.weburl}</a>
+            <DollarOutlined /> {data.currency}
           </Text>
-        )}
-        {stockPrice?.data.c && (
-          <>
-            {stockPrice?.data.c && <Text>Current price: {stockPrice.data.c} USD</Text>}
-            {stockPrice?.data.d && <Text>Change: {stockPrice.data.d} USD</Text>}
-            {stockPrice?.data.dp && <Text>Percent change: {stockPrice.data.dp} USD</Text>}
-            {stockPrice?.data.h && <Text>High price of the day: {stockPrice.data.h} USD</Text>}
-            {stockPrice?.data.l && <Text>Low price of the day: {stockPrice.data.l} USD</Text>}
-            {stockPrice?.data.o && <Text>Open price of the day: {stockPrice.data.o} USD</Text>}
-            {stockPrice?.data.pc && <Text>Previous close price: {stockPrice.data.pc} USD</Text>}
-          </>
-        )}
-      </div>
-      {stockPrice.data.c && (
-        <div className={styles.form}>
-          <InputNumber
-            value={inputValue}
-            onChange={value => setInputValue(value)}
-            addonBefore={<Text>Введите кол-во акций: </Text>}
-            min={1}
-            max={1000}
-            addonAfter={<Text>Итого: {price.toFixed(2)} USD</Text>}
-          />
-          <Button type={'primary'} size={'middle'} onClick={() => handleClick()}>
-            <Text className={styles.button_text}>Добавить</Text>
+          <Text>
+            <TagOutlined /> {data.exchange}
+          </Text>
+          <Text>
+            <InfoCircleOutlined /> {data.finnhubIndustry}
+          </Text>
+        </div>
+        <div className={styles.section}>
+          <Text>
+            Current price: <strong>{stockPrice.data.c} USD</strong>
+          </Text>
+          <Text>
+            Change: <strong>{stockPrice.data.d} USD</strong>
+          </Text>
+          <Text>
+            Percent change: <strong>{stockPrice.data.dp}%</strong>
+          </Text>
+          <Text>
+            High today: <strong>{stockPrice.data.h} USD</strong>
+          </Text>
+          <Text>
+            Low today: <strong>{stockPrice.data.l} USD</strong>
+          </Text>
+          <Text>
+            Open today: <strong>{stockPrice.data.o} USD</strong>
+          </Text>
+          <Text>
+            Previous close: <strong>{stockPrice.data.pc} USD</strong>
+          </Text>
+        </div>
+        <div className={styles.buySection}>
+          <InputNumber value={inputValue} onChange={setInputValue} min={1} max={1000} />
+          <Text>Total: {price.toFixed(2)} USD</Text>
+          <Button type={'primary'} onClick={handleClick}>
+            Add to Portfolio
           </Button>
         </div>
-      )}
+      </div>
     </Card>
   );
 };

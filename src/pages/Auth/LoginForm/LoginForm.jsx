@@ -13,17 +13,13 @@ export const LoginForm = ({ formik, toggleForm }) => {
   const { value: usersData } = useLocalStorage('users', []);
 
   const handleLogin = async () => {
-    try {
-      const user = usersData.find(u => u.email === formik.values.email && u.password === formik.values.password);
-      if (user) {
-        login(usersData);
-        toast.success('Вход выполнен успешно!');
-        navigate('/');
-      } else {
-        toast.error('Неверный email или пароль.');
-      }
-    } catch (error) {
-      toast.error('Ошибка при попытке входа:', error);
+    const user = usersData.find(u => u.email === formik.values.email && u.password === formik.values.password);
+    if (user) {
+      toast.success('Вход выполнен успешно!');
+      navigate('/');
+      login(usersData);
+    } else {
+      toast.error('Неверный email или пароль.');
     }
   };
 

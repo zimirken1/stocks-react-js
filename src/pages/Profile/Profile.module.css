@@ -1,0 +1,38 @@
+.user_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  margin: 30px auto;
+
+  .avatar_upload {
+    margin-bottom: 24px;
+    .ant-upload {
+      margin-top: 16px;
+    }
+  }
+
+  .profile_form {
+    width: 100%;
+
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+  }
+
+  .update_button {
+    width: 100%;
+    font-weight: bold;
+  }
+}
+
+.user_profile_avatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+}

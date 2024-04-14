@@ -1,0 +1,48 @@
+.landing_page {
+  padding: 5% 10% 0 10%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .hero_section {
+    padding: 80px 20px;
+    background: #f0f2f5;
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 24px;
+    }
+
+    .ant-typography {
+      margin-bottom: 16px;
+    }
+  }
+
+  .features_section {
+    padding: 40px 20px;
+
+    .ant-row {
+      margin-top: 20px;
+    }
+  }
+
+  .testimonial_section {
+    padding: 40px 20px;
+    background: #f7f7f7;
+
+    .ant-typography {
+      margin-bottom: 16px;
+    }
+  }
+
+  .cta_section {
+    padding: 80px 20px;
+
+    h2 {
+      margin-bottom: 24px;
+    }
+  }
+}

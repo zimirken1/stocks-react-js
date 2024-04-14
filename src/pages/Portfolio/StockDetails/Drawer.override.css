@@ -1,0 +1,19 @@
+.customDrawer {
+  .ant-drawer-body {
+    background-color: #f0f2f5;
+    padding: 24px;
+  }
+
+  .ant-drawer-header {
+    background-color: #001529;
+    color: #fff;
+  }
+
+  .ant-drawer-title {
+    color: #fff;
+  }
+
+  .ant-drawer-close {
+    color: #fff;
+  }
+}

@@ -1,25 +1,37 @@
-.inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+.stockDetailsCard {
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    h2 {
+      margin-left: 16px;
+      margin-bottom: 0;
+    }
+  }
 
-.logo {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
+  .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 
-.form {
-  width: 100%;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 15px;
-}
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.button_text {
-  color: white;
+  .buySection {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+
+  .ant-typography {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }

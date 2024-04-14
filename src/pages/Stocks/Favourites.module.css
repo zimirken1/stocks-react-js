@@ -1,9 +1,8 @@
 .stocks {
-  margin-right: 500px;
   z-index: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   margin: 30px auto;
   gap: 20px;

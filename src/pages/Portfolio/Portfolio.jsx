@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { Drawer } from 'antd';
+import { Drawer, Statistic, Card } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
 import { SearchStocks } from 'src/components/components/SearchStocks/SearchStocks.jsx';
 import { PortfolioStocksTable } from './PortfolioStocksTable/PortfolioStocksTable.jsx';
@@ -29,10 +30,15 @@ export const Portfolio = () => {
     return Number(portfolioStocks.reduce((total, stock) => total + stock.totalPrice, 0)).toFixed(2);
   }, [portfolioStocks]);
 
+  const profit = useMemo(() => (totalCurrentPrice - totalSpend).toFixed(2), [totalCurrentPrice, totalSpend]);
+  const profitColor = profit >= 0 ? '#3f8600' : '#cf1322';
+
   return (
     <div className={styles.container}>
       <div className={styles.details}>
-        <SearchStocks openSidebar={openSidebar} />
+        <div className={styles.details_search}>
+          <SearchStocks openSidebar={openSidebar} />
+        </div>
         <PortfolioStocksTable
           stocks={portfolioStocks}
           setTotalCurrentPrice={setTotalCurrentPrice}
@@ -40,14 +46,26 @@ export const Portfolio = () => {
         />
       </div>
       <div className={styles.stats}>
-        <div className={styles.statsInner}>
-          <h1>Статистика</h1>
-          <div>Потрачено: {totalSpend} USD</div>
-          <div>Текущая стоимость портфеля: {totalCurrentPrice} USD</div>
-          <div>Прибыль: {(totalCurrentPrice - totalSpend).toFixed(2)} USD</div>
-        </div>
+        <Card bordered={false}>
+          <Statistic title='Потрачено' value={totalSpend} suffix='USD' precision={2} />
+          <Statistic
+            title='Текущая стоимость портфеля'
+            value={totalCurrentPrice}
+            suffix='USD'
+            precision={2}
+            style={{ margin: '20px 0' }}
+          />
+          <Statistic
+            title='Прибыль'
+            value={profit}
+            suffix='USD'
+            precision={2}
+            valueStyle={{ color: profitColor }}
+            prefix={profit >= 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+          />
+        </Card>
       </div>
-      <Drawer open={isOpen} width={600} onClose={() => closeSidebar()} title={symbol}>
+      <Drawer className={styles.customDrawer} open={isOpen} width={600} onClose={() => closeSidebar()} title={symbol}>
         <StockDetails closeSidebar={closeSidebar} addSymbolToPortfolio={addSymbolToPortfolio} symbol={symbol} />
       </Drawer>
     </div>
